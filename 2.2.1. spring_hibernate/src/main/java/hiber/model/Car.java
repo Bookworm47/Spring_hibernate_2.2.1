@@ -1,18 +1,25 @@
 package hiber.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
 
 @Entity
 @Table (name = "cars")
+@Component
 public class Car {
 
     @Id
-    @GeneratedValue (strategy = GenerationType.IDENTITY)
-    private int id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     @Column (name = "model")
     private String model;
     @Column (name = "series")
     private int series;
+
+    @OneToOne
+    @MapsId
+    private User user;
 
     public Car() {
     }
@@ -22,7 +29,7 @@ public class Car {
         this.series = series;
     }
 
-    public int getId() {
+    public Long getId() {
         return id;
     }
 
@@ -40,6 +47,18 @@ public class Car {
 
     public void setSeries(int series) {
         this.series = series;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     @Override
