@@ -6,7 +6,6 @@ import javax.persistence.*;
 
 @Entity
 @Table (name = "cars")
-@Component
 public class Car {
 
     @Id
